@@ -1,0 +1,31 @@
+variables:
+  CI_REGISTRY: docker.io
+  DOTNET_IMAGE: jhart0/dotnet_python_node
+  ASPNET_IMAGE: jhart0/aspnet_python_node
+
+docker-build-master:
+  image: docker:latest
+  stage: build
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker build --pull -t "DOTNET_IMAGE" .
+    - docker push "DOTNET_IMAGE"
+  only:
+    - master
+
+docker-build-aspnet:
+  # Official docker image.
+  image: docker:latest
+  stage: build
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker build --pull -t "ASPNET_IMAGE" .
+    - docker push "ASPNET_IMAGE"
+  only:
+    - aspnet
