@@ -9,3 +9,6 @@ RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - && apt-get install -
 RUN npm install -g npm
 RUN npm install
 RUN apt-get update && apt-get install python3 python3-pip -y
+
+RUN apt-get install zip awscli jq -y \
+  && pip3 install boto3
