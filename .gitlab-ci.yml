@@ -11,8 +11,8 @@ docker-build-master:
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
-    - docker build --pull -t "DOTNET_IMAGE" .
-    - docker push "DOTNET_IMAGE"
+    - docker build --pull -t "$DOTNET_IMAGE" .
+    - docker push "$DOTNET_IMAGE"
   only:
     - master
 
@@ -25,7 +25,7 @@ docker-build-aspnet:
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
-    - docker build --pull -t "ASPNET_IMAGE" .
-    - docker push "ASPNET_IMAGE"
+    - docker build --pull -t "$ASPNET_IMAGE" .
+    - docker push "$ASPNET_IMAGE"
   only:
     - aspnet
