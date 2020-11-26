@@ -1,7 +1,7 @@
 FROM mcr.microsoft.com/dotnet/aspnet:5.0
 
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update && apt-get install -y tzdata
+RUN apt-get update && apt-get install -y tzdata curl
 RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime \
  && dpkg-reconfigure --frontend noninteractive tzdata
 
